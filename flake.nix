@@ -32,10 +32,12 @@
     darwinConfigurations = rec {
       Jasons-MacBook-Pro = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
+        specialArgs = { inherit inputs; };
         modules = [
           # Main `nix-darwin` config
           ./modules/configuration.nix
           ./modules/brew.nix
+          ./modules/nix-path.nix
           home-manager.darwinModules.home-manager
           {
             nixpkgs = nixpkgsConfig;
